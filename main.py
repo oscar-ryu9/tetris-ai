@@ -1,5 +1,6 @@
 import pygame
 import shapes
+import grid
 
 pygame.init()
 
@@ -30,11 +31,14 @@ while running:
     screen.fill(background_color)
 
     #background aesthetics
-    grey_rectangle1 = pygame.Rect(280, 20, 2000, 1400)
-    grey_rectangle2 = pygame.Rect(285, 25, 1990, 1390)
+    grey_rectangle1 = pygame.Rect(275, 15, 2010, 1410)
+    grey_rectangle2 = pygame.Rect(280, 20, 2000, 1400)
     pygame.draw.rect(screen, (207, 207, 207), grey_rectangle1)
     pygame.draw.rect(screen, (232, 232, 232), grey_rectangle2)
     pygame.display.update()
+
+
+
 
 
 pygame.quit()
