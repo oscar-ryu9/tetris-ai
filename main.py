@@ -1,5 +1,6 @@
 import pygame
 import shapes
+import time
 
 pygame.init()
 
@@ -13,10 +14,15 @@ pygame.display.set_caption('Tetris')
 logo = pygame.image.load('assets/tetris_logo.jpg')
 pygame.display.set_icon(logo)
 
+#initialize blocks
+Block = shapes.Tetromino('block', 1221, 120)
+
 
 def draw_grid():
-    grid = pygame.Rect(980, 120, 600, 1200)
-    pygame.draw.rect(screen, (255, 255, 255), grid)
+    grid_outer = pygame.Rect(977, 117, 606, 1206)
+    grid_inner = pygame.Rect(982, 122, 596, 1196)
+
+    pygame.draw.rect(screen, (255, 255, 255), grid_inner)
 
     for i in range(9):
         start_pos = (((i+1)*60) + 980, 120)
@@ -28,7 +34,7 @@ def draw_grid():
         end_pos = (1580, ((i+1)*60) + 120)
         pygame.draw.line(screen, (232, 232, 232), start_pos, end_pos, 2)
 
-    pygame.draw.rect(screen, (0, 0, 0), grid, 5)
+    pygame.draw.rect(screen, (0, 0, 0), grid_outer, 5)
 
 
 def draw_background():
@@ -42,6 +48,8 @@ def draw_background():
 
 
 #game
+
+
 running = True
 while running:
 
@@ -51,8 +59,13 @@ while running:
             if event.key == pygame.K_ESCAPE:
                 running = False
 
+
+    # block
     draw_background()
     draw_grid()
-    pygame.display.update()
+    Block.draw()
+
+    if Block.get_update():
+        pygame.display.update()
 
 pygame.quit()
