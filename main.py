@@ -1,6 +1,6 @@
 import pygame
 import shapes
-import time
+import random
 
 pygame.init()
 
@@ -15,7 +15,8 @@ logo = pygame.image.load('assets/tetris_logo.jpg')
 pygame.display.set_icon(logo)
 
 #initialize blocks
-Block = shapes.Tetromino('block', 1221, 120)
+bag_of_shapes = ['I', 'J', 'L', 'O', 'S', 'T', 'Z']
+Block = shapes.Tetromino(random.choice(bag_of_shapes), 1161, 120)
 
 
 def draw_grid():
@@ -45,6 +46,7 @@ def draw_background():
     grey_rectangle2 = pygame.Rect(280, 20, 2000, 1400)
     pygame.draw.rect(screen, (207, 207, 207), grey_rectangle1)
     pygame.draw.rect(screen, (232, 232, 232), grey_rectangle2)
+
 
 
 #game
