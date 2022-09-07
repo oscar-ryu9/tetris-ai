@@ -55,11 +55,15 @@ def draw_background():
 running = True
 while running:
 
-    #exit clause
     for event in pygame.event.get():
         if event.type == pygame.KEYDOWN:
+            # exit clause
             if event.key == pygame.K_ESCAPE:
                 running = False
+            #rotate shape clause
+            if event.key == pygame.K_SPACE:
+                Block.rotate()
+
 
 
     # block

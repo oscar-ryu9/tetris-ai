@@ -40,7 +40,6 @@ class Tetromino:
 
     def draw(self):
         my_matrix = self.matrix[self.type]
-        print(my_matrix)
         now = pygame.time.get_ticks()
         if now - self.last >= self.cooldown:
             self.update = True
@@ -53,6 +52,8 @@ class Tetromino:
         else:
             self.update = False
 
+    def rotate(self):
+        print("ROTATE")
 
     def get_update(self):
         return self.update
