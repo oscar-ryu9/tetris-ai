@@ -53,6 +53,8 @@ def draw_background():
 
 
 running = True
+collision = False
+Block = shapes.Tetromino(random.choice(bag_of_shapes), 1161, 120)
 while running:
 
     for event in pygame.event.get():
@@ -67,9 +69,12 @@ while running:
 
 
     # block
+    if collision:
+        Block = shapes.Tetromino(random.choice(bag_of_shapes), 1161, 120)
+
     draw_background()
     draw_grid()
-    Block.draw()
+    collision = Block.draw()
 
     if Block.get_update():
         pygame.display.update()

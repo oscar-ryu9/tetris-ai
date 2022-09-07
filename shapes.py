@@ -11,7 +11,7 @@ class Tetromino:
         self.x = x
         self.y = y
         self.last = pygame.time.get_ticks()
-        self.cooldown = 300
+        self.cooldown = 100
         self.update = False
         # matrix
         # 0   1   2   3
@@ -42,16 +42,21 @@ class Tetromino:
     def draw(self):
         my_matrix = self.matrix[self.type]
         now = pygame.time.get_ticks()
-        if now - self.last >= self.cooldown:
-            self.update = True
-            for i in range(4):
-                blocki = pygame.Rect((self.x + ((my_matrix[i]%4)*60)), (self.y + ((my_matrix[i]//4)*60)), 61, 61)
-                pygame.draw.rect(screen, self.colors[self.type], blocki)
-                pygame.draw.rect(screen, (0, 0, 0), blocki, 3)
-            self.last = pygame.time.get_ticks()
-            self.y += 60
+        if self.y < 1320:
+            if now - self.last >= self.cooldown:
+                self.update = True
+                for i in range(4):
+                    blocki = pygame.Rect((self.x + ((my_matrix[i]%4)*60)), (self.y + ((my_matrix[i]//4)*60)), 61, 61)
+                    pygame.draw.rect(screen, self.colors[self.type], blocki)
+                    pygame.draw.rect(screen, (0, 0, 0), blocki, 3)
+                self.last = pygame.time.get_ticks()
+                self.y += 60
+            else:
+                self.update = False
+            return False
         else:
-            self.update = False
+            return True
+
 
     def rotate(self):
         print("ROTATE")
