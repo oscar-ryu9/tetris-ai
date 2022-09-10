@@ -40,6 +40,8 @@ class Tetromino:
         }
         self.rotate_index = 0
 
+        self.current_locations = [(0, 0), (0, 0), (0, 0), (0, 0)]
+
     def draw(self):
         now = pygame.time.get_ticks()
         my_matrix = self.matrix[self.type][self.rotate_index]
@@ -50,6 +52,7 @@ class Tetromino:
                     blocki = pygame.Rect((self.x + ((my_matrix[i]%4)*60)), (self.y + ((my_matrix[i]//4)*60)), 61, 61)
                     pygame.draw.rect(screen, self.colors[self.type], blocki)
                     pygame.draw.rect(screen, (0, 0, 0), blocki, 3)
+                    self.set_location((self.x + ((my_matrix[i]%4)*60)), (self.y + ((my_matrix[i]//4)*60)), i)
                 self.last = pygame.time.get_ticks()
                 self.y += 60
             else:
@@ -65,6 +68,14 @@ class Tetromino:
 
     def get_update(self):
         return self.update
+
+    def set_location(self, xpos, ypos, i):
+        print(xpos)
+        self.current_locations[i] = ((xpos-981)//60, (ypos-120)//60)
+
+    def get_location(self):
+        return self.current_locations
+
 
 
 

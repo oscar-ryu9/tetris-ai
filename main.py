@@ -75,6 +75,7 @@ while running:
     draw_background()
     draw_grid()
     collision = Block.draw()
+    print(Block.get_location())
 
     if Block.get_update():
         pygame.display.update()
